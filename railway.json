@@ -1,12 +1,9 @@
 {
-  "nixpacks": {
-    "app": {
-      "start": "cd server/api-gateway && npm start"
-    },
-    "build": {
-      "commands": [
-        "cd server/api-gateway && npm install"
-      ]
-    }
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "cd server/api-gateway && npm install --production && npm start",
+    "restartPolicyType": "ON_FAILURE"
   }
 }
