@@ -2,12 +2,15 @@
   "name": "mocka-design",
   "version": "1.0.0",
   "description": "A modern design platform with Next.js frontend and Node.js microservices backend",
+  "main": "server/api-gateway/src/server.js",
   "scripts": {
+    "start": "cd server/api-gateway && npm start",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server/api-gateway && npm run dev",
     "build:client": "cd client && npm run build",
     "start:client": "cd client && npm run start",
-    "install:all": "cd client && npm install && cd ../server/api-gateway && npm install && cd ../design-service && npm install && cd ../subscription-service && npm install && cd ../upload-service && npm install"
+    "install:all": "cd client && npm install && cd ../server/api-gateway && npm install && cd ../design-service && npm install && cd ../subscription-service && npm install && cd ../upload-service && npm install",
+    "install:server": "cd server/api-gateway && npm install"
   },
   "keywords": ["design", "nextjs", "nodejs", "microservices", "canvas", "editor"],
   "author": "Mocka Design Team",

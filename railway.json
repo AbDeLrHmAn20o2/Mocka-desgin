@@ -1,0 +1,12 @@
+{
+  "nixpacks": {
+    "app": {
+      "start": "cd server/api-gateway && npm start"
+    },
+    "build": {
+      "commands": [
+        "cd server/api-gateway && npm install"
+      ]
+    }
+  }
+}
