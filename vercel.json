@@ -11,10 +11,5 @@
       "src": "/(.*)",
       "dest": "client/$1"
     }
-  ],
-  "env": {
-    "NEXTAUTH_SECRET": "@nextauth-secret",
-    "NEXTAUTH_URL": "@nextauth-url",
-    "API_GATEWAY_URL": "@api-gateway-url"
-  }
+  ]
 }
