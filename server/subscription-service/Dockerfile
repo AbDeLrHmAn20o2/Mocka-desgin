@@ -14,7 +14,7 @@ RUN npm ci --only=production
 COPY src/ ./src/
 
 # Expose port
-EXPOSE 5001
+EXPOSE 5003
 
 # Start the application
 CMD ["npm", "start"]
