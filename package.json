@@ -1,0 +1,19 @@
+{
+  "name": "mocka-design",
+  "version": "1.0.0",
+  "description": "A modern design platform with Next.js frontend and Node.js microservices backend",
+  "scripts": {
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server/api-gateway && npm run dev",
+    "build:client": "cd client && npm run build",
+    "start:client": "cd client && npm run start",
+    "install:all": "cd client && npm install && cd ../server/api-gateway && npm install && cd ../design-service && npm install && cd ../subscription-service && npm install && cd ../upload-service && npm install"
+  },
+  "keywords": ["design", "nextjs", "nodejs", "microservices", "canvas", "editor"],
+  "author": "Mocka Design Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AbDeLrHmAn20o2/Mocka-desgin.git"
+  }
+}

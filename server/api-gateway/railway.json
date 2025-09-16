@@ -1,0 +1,12 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "deploy": {
+    "restartPolicyType": "always"
+  },
+  "environment": {
+    "PORT": "4000",
+    "NODE_ENV": "production"
+  }
+}
