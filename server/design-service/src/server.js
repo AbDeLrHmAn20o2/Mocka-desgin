@@ -6,7 +6,7 @@ const helmet = require("helmet");
 const designRoutes = require("./routes/design-routes");
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 1337;
 
 mongoose
   .connect(process.env.MONGO_URI)

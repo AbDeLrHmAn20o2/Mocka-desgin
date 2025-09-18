@@ -6,7 +6,7 @@ const helmet = require("helmet");
 const mediaRoutes = require("./routes/upload-routes");
 
 const app = express();
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 1337;
 
 mongoose
   .connect(process.env.MONGO_URI)

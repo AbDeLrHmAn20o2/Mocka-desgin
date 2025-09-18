@@ -6,7 +6,7 @@ const helmet = require("helmet");
 const authMiddleware = require("./middleware/auth-middleware");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 1337;
 
 // Global error handler to prevent crashes
 process.on('uncaughtException', (error) => {
