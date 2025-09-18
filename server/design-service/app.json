@@ -1,0 +1,29 @@
+{
+  "name": "design-service-mocka",
+  "description": "Mocka Design Platform - Design Service",
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "MONGO_URI": {
+      "description": "MongoDB connection string",
+      "value": "mongodb://localhost:27017/mocka_design"
+    },
+    "JWT_SECRET": {
+      "description": "JWT secret key",
+      "value": "uqJhOyuWVOBTOryqI+WXH0zwFJxNQEiOi29d98oqbII="
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

@@ -18,13 +18,35 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Health check endpoints
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'subscription-service',
+    timestamp: new Date().toISOString(),
+    port: PORT,
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+  });
+});
+
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Mocka Subscription Service',
+    status: 'running',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+    port: PORT
+  });
+});
+
 app.use("/api/subscription", subscriptionRoutes);
 
 async function startServer() {
   try {
-    app.listen(PORT, () =>
-      console.log(`SUBSCRIPTION Service running on port ${PORT}`)
-    );
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`💳 SUBSCRIPTION Service running on port ${PORT}`);
+      console.log(`🏥 Health check available at: http://0.0.0.0:${PORT}/health`);
+    });
   } catch (error) {
     console.error("Failed to connected to server", error);
     process.exit(1);

@@ -160,14 +160,24 @@ const PORT = process.env.PORT || 1337;
 
 ### **Common Issues:**
 
-1. **Build Fails**: Check package.json start script
-2. **Database Connection**: Back4App provides MongoDB automatically
-3. **Environment Variables**: Set in Back4App dashboard
-4. **CORS Issues**: Already fixed in your code
+1. **Port 4000 Error**: If you get "trying to hit the 4000 port" error:
+   - ✅ **FIXED**: Code now uses `process.env.PORT` and binds to `0.0.0.0`
+   - ✅ **Health Check**: Added `/` and `/health` endpoints for monitoring
+   - 🔄 **Retry**: Redeploy after latest git push (commit: 08e5973)
+
+2. **Build Fails**: Check package.json start script
+3. **Database Connection**: Back4App provides MongoDB automatically
+4. **Environment Variables**: Set in Back4App dashboard
+5. **CORS Issues**: Already fixed in your code
+
+### **Deployment Health Checks:**
+- **Root**: `https://your-app.back4app.io/` - Returns app status
+- **Health**: `https://your-app.back4app.io/health` - Detailed service info
 
 ### **Logs & Debugging:**
 - Back4App provides **live logs** in the dashboard
 - Check **"Logs"** tab for any errors
+- Look for `🚀 API Gateway is running on port` message
 
 ## 🎉 Success!
 
