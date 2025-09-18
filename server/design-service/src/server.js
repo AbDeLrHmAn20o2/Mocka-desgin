@@ -13,7 +13,26 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.log("MongoDB Error", error));
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    process.env.FRONTEND_URL || "http://localhost:3000",
+    "https://mocka-desgin.vercel.app",
+    "https://mocka-design-api-gateway-lp9l.back4app.io",
+    /\.vercel\.app$/,
+    /\.back4app\.io$/,
+    /\.b4a\.run$/
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type', 
+    'Authorization', 
+    'X-Requested-With',
+    'x-user-id',
+    'x-gateway-service',
+    'x-request-id'
+  ]
+}));
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

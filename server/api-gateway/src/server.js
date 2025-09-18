@@ -117,6 +117,8 @@ const createProxyOptions = (serviceName) => ({
     if (srcReq.user && srcReq.user.id) {
       proxyReqOpts.headers['x-user-id'] = srcReq.user.id;
       console.log(`🔗 Forwarding user ID: ${srcReq.user.id} to ${serviceName}`);
+    } else {
+      console.log(`⚠️ No user ID available to forward to ${serviceName}. srcReq.user:`, srcReq.user);
     }
     
     return proxyReqOpts;

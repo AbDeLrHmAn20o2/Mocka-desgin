@@ -34,6 +34,7 @@ async function authMiddleware(req, res, next) {
 
     const payload = ticket.getPayload();
     console.log('✅ Token verified successfully for user:', payload.email);
+    console.log('🔍 User ID extracted:', payload.sub);
 
     req.user = {
       id: payload.sub,
@@ -42,6 +43,7 @@ async function authMiddleware(req, res, next) {
       picture: payload.picture,
     };
 
+    console.log('🔍 req.user set to:', JSON.stringify(req.user, null, 2));
     next();
   } catch (error) {
     console.error('🚨 Token verification failed:', error.message);
