@@ -1,0 +1,29 @@
+{
+  "name": "api-gateway-mocka",
+  "description": "Mocka Design Platform API Gateway",
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "FRONTEND_URL": {
+      "description": "Frontend URL",
+      "value": "https://mocka-desgin.vercel.app"
+    },
+    "GOOGLE_CLIENT_ID": {
+      "description": "Google OAuth Client ID",
+      "value": "865143657600-ohvp3fnrav83f725kp1a8k56aircomc6.apps.googleusercontent.com"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

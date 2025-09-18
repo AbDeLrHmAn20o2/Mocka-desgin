@@ -109,16 +109,28 @@ const createProxyOptions = (serviceName) => ({
   }
 });
 
-// Health check endpoint
+// Health check endpoints
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
+    port: PORT,
     services: {
       design: process.env.DESIGN || 'not configured',
       upload: process.env.UPLOAD || 'not configured', 
       subscription: process.env.SUBSCRIPTION || 'not configured'
     }
+  });
+});
+
+// Root endpoint for Back4App health checks
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Mocka Design API Gateway',
+    status: 'running',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+    port: PORT
   });
 });
 
@@ -181,12 +193,13 @@ app.use('*', (req, res) => {
 });
 
 // Start server with error handling
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 API Gateway is running on port ${PORT}`);
   console.log(`🔗 DESIGN Service: ${process.env.DESIGN || 'NOT CONFIGURED'}`);
   console.log(`🔗 UPLOAD Service: ${process.env.UPLOAD || 'NOT CONFIGURED'}`);
   console.log(`🔗 SUBSCRIPTION Service: ${process.env.SUBSCRIPTION || 'NOT CONFIGURED'}`);
   console.log(`🌐 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:3000'}`);
+  console.log(`🏥 Health check available at: http://0.0.0.0:${PORT}/health`);
 });
 
 server.on('error', (error) => {
