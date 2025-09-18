@@ -3,7 +3,7 @@ const express = require("express");
 const proxy = require("express-http-proxy");
 const cors = require("cors");
 const helmet = require("helmet");
-const authMiddleware = require("./middleware/auth-middleware");
+const authMiddleware = require("./middleware/auth-middleware-debug");
 
 const app = express();
 const PORT = process.env.PORT || 1337;
