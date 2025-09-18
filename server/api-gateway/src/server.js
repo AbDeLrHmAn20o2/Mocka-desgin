@@ -161,7 +161,7 @@ try {
   if (process.env.DESIGN) {
     app.use(
       "/v1/designs",
-      // authMiddleware, // TEMPORARILY DISABLED FOR TESTING
+      authMiddleware,
       proxy(process.env.DESIGN, createProxyOptions('Design Service'))
     );
   } else {
@@ -171,7 +171,7 @@ try {
   if (process.env.UPLOAD) {
     app.use(
       "/v1/media/upload",
-      // authMiddleware, // TEMPORARILY DISABLED FOR TESTING
+      authMiddleware,
       proxy(process.env.UPLOAD, {
         ...createProxyOptions('Upload Service'),
         parseReqBody: false, // Don't parse body for file uploads
@@ -180,7 +180,7 @@ try {
 
     app.use(
       "/v1/media",
-      // authMiddleware, // TEMPORARILY DISABLED FOR TESTING
+      authMiddleware,
       proxy(process.env.UPLOAD, createProxyOptions('Media Service'))
     );
   } else {
@@ -190,7 +190,7 @@ try {
   if (process.env.SUBSCRIPTION) {
     app.use(
       "/v1/subscription", 
-      // authMiddleware, // TEMPORARILY DISABLED FOR TESTING
+      authMiddleware,
       proxy(process.env.SUBSCRIPTION, createProxyOptions('Subscription Service'))
     );
   } else {
