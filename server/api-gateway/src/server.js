@@ -143,32 +143,45 @@ app.get('/', (req, res) => {
 
 // Service routes with enhanced error handling
 try {
-  app.use(
-    "/v1/designs",
-    authMiddleware,
-    proxy(process.env.DESIGN, createProxyOptions('Design Service'))
-  );
+  // Only set up proxies for configured services
+  if (process.env.DESIGN) {
+    app.use(
+      "/v1/designs",
+      authMiddleware,
+      proxy(process.env.DESIGN, createProxyOptions('Design Service'))
+    );
+  } else {
+    console.log('⚠️ DESIGN service not configured - skipping proxy setup');
+  }
 
-  app.use(
-    "/v1/media/upload",
-    authMiddleware,
-    proxy(process.env.UPLOAD, {
-      ...createProxyOptions('Upload Service'),
-      parseReqBody: false, // Don't parse body for file uploads
-    })
-  );
+  if (process.env.UPLOAD) {
+    app.use(
+      "/v1/media/upload",
+      authMiddleware,
+      proxy(process.env.UPLOAD, {
+        ...createProxyOptions('Upload Service'),
+        parseReqBody: false, // Don't parse body for file uploads
+      })
+    );
 
-  app.use(
-    "/v1/media",
-    authMiddleware,
-    proxy(process.env.UPLOAD, createProxyOptions('Media Service'))
-  );
+    app.use(
+      "/v1/media",
+      authMiddleware,
+      proxy(process.env.UPLOAD, createProxyOptions('Media Service'))
+    );
+  } else {
+    console.log('⚠️ UPLOAD service not configured - skipping proxy setup');
+  }
 
-  app.use(
-    "/v1/subscription", 
-    authMiddleware,
-    proxy(process.env.SUBSCRIPTION, createProxyOptions('Subscription Service'))
-  );
+  if (process.env.SUBSCRIPTION) {
+    app.use(
+      "/v1/subscription", 
+      authMiddleware,
+      proxy(process.env.SUBSCRIPTION, createProxyOptions('Subscription Service'))
+    );
+  } else {
+    console.log('⚠️ SUBSCRIPTION service not configured - skipping proxy setup');
+  }
   
 } catch (error) {
   console.error('🚨 Error setting up proxy routes:', error);
