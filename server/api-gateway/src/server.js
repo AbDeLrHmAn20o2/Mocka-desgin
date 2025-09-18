@@ -112,6 +112,13 @@ const createProxyOptions = (serviceName) => ({
     proxyReqOpts.headers = proxyReqOpts.headers || {};
     proxyReqOpts.headers['x-gateway-service'] = serviceName;
     proxyReqOpts.headers['x-request-id'] = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    // Forward user ID from authenticated request
+    if (srcReq.user && srcReq.user.id) {
+      proxyReqOpts.headers['x-user-id'] = srcReq.user.id;
+      console.log(`🔗 Forwarding user ID: ${srcReq.user.id} to ${serviceName}`);
+    }
+    
     return proxyReqOpts;
   }
 });
