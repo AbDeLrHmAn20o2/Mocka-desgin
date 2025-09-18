@@ -158,26 +158,51 @@ const PORT = process.env.PORT || 1337;
 
 ## 🆘 Troubleshooting
 
+### **Port 4000 Error - FIXED! ✅**
+
+**Error Message:**
+```
+trying to hit the 4000 port using http
+it looks that no process is listening to the 4000 port using http
+app did not turn healthy after several checks
+deployment failed
+```
+
+**Solution Applied (commit: 607c22d):**
+- ✅ **All services now bind to `0.0.0.0`** (required for cloud deployment)
+- ✅ **Health endpoints added to ALL services** (`/` and `/health`)
+- ✅ **Proper package.json engines** for all services
+- ✅ **App.json configuration** files added
+
+**To Fix Your Deployment:**
+1. **Redeploy**: Go to Back4App → Your App → Deploy (it will pull latest code)
+2. **Clear Cache**: In deployment settings, try "Clear Cache & Deploy"
+3. **Check Logs**: Look for `🚀 [SERVICE] running on port 1337` message
+
 ### **Common Issues:**
 
-1. **Port 4000 Error**: If you get "trying to hit the 4000 port" error:
-   - ✅ **FIXED**: Code now uses `process.env.PORT` and binds to `0.0.0.0`
-   - ✅ **Health Check**: Added `/` and `/health` endpoints for monitoring
-   - 🔄 **Retry**: Redeploy after latest git push (commit: 08e5973)
-
-2. **Build Fails**: Check package.json start script
-3. **Database Connection**: Back4App provides MongoDB automatically
-4. **Environment Variables**: Set in Back4App dashboard
-5. **CORS Issues**: Already fixed in your code
+1. **Build Fails**: Check package.json start script
+2. **Database Connection**: Back4App provides MongoDB automatically
+3. **Environment Variables**: Set in Back4App dashboard
+4. **CORS Issues**: Already fixed in your code
 
 ### **Deployment Health Checks:**
 - **Root**: `https://your-app.back4app.io/` - Returns app status
 - **Health**: `https://your-app.back4app.io/health` - Detailed service info
 
+### **Expected Log Messages:**
+```
+🚀 API Gateway is running on port 1337
+🎨 DESIGN Service running on port 1337
+📤 UPLOAD Service running on port 1337
+💳 SUBSCRIPTION Service running on port 1337
+🏥 Health check available at: http://0.0.0.0:1337/health
+```
+
 ### **Logs & Debugging:**
 - Back4App provides **live logs** in the dashboard
 - Check **"Logs"** tab for any errors
-- Look for `🚀 API Gateway is running on port` message
+- All services now have comprehensive logging
 
 ## 🎉 Success!
 
